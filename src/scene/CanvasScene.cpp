@@ -4,6 +4,7 @@
 
 #include "resource/Resources.h"
 #include "resource/ToolHintConstants.h"
+#include <fstream>
 
 USING_NS_CC;
 using namespace DollarRecognizer;
@@ -131,6 +132,7 @@ bool GameCanvasLayer::init()
 	{
 		return false;
 	}
+	log("LOADING");
 
 	// initialize loadTemplateListener, listen to EVENT_LOADED_TEMPLATE
 	auto _loadedTemplateListener = EventListenerCustom::create(EVENT_LOADED_TEMPLATE, [&](EventCustom* event){
@@ -145,6 +147,8 @@ bool GameCanvasLayer::init()
 
 	// initialize pre-command handler
 	_preCmdHandlers.init();
+
+	log("LOADING Down");
 	
 	return true;
 }
@@ -152,7 +156,7 @@ bool GameCanvasLayer::init()
 void GameCanvasLayer::onEnter()
 {
 	CanvasLayer::onEnter();
-
+	log("LOADING Part2");
 	// create a new draw node, and switch to it
 	_currentDrawNode = switchToNewDrawNode();
 
@@ -188,6 +192,7 @@ void GameCanvasLayer::onEnter()
 
 	// uncomment when you want to enable debug mode when program start
 	// ((CanvasScene*)(this->getScene()))->toggleDebugDraw();
+	log("LOADING part2 Down");
 }
 
 void GameCanvasLayer::onExit()
@@ -256,6 +261,8 @@ void GameCanvasLayer::removeUnrecognizedSprite(DrawableSprite* target)
 
 void GameCanvasLayer::recognize()
 {
+	log("Begin Recognize");
+	_jointMode = false;
 	if (_jointMode)
 	{
 		//joints.push_back(joints[0]);
@@ -263,8 +270,20 @@ void GameCanvasLayer::recognize()
 		joints.clear();
 		return;
 	}
-	RecognitionResult result = _currentDrawNode->recognize();
+	RecognitionResult result = this->_currentDrawNode->recognize();
+	string ssss = result.name;
+	ofstream  outfile;
+	outfile.open("D://fish.txt");
+	
+	string resultstring = result.name;
+	float sx = this->_startDrawLocation.x;
+	float sy = this->_startDrawLocation.y;
+	outfile << ssss.c_str() << endl;
+	outfile << sx << endl;
+	outfile << sy << endl;
+	outfile.close();
 	RecognizedSprite rs(result, _currentDrawNode);
+	log("Recognize Down");
 	if (result.score < 0.75f)
 	{
 		log("Geometric Recognize Failed. Guess: %s, Score: %f", result.name.c_str(), result.score);
@@ -283,7 +302,7 @@ void GameCanvasLayer::recognize()
 		event.setUserData((void*)&rs);
 		_eventDispatcher->dispatchEvent(&event);
 	}
-
+	_currentDrawNode->clear();
 	_currentDrawNode = switchToNewDrawNode();
 }
 
@@ -507,6 +526,7 @@ void GameLayer::onEnter()
 
 void GameLayer::onExit()
 {
+	log("game layer on exit");
 	this->stopAllActions();
 	_eventDispatcher->removeEventListenersForTarget(this);
 	Layer::onExit();

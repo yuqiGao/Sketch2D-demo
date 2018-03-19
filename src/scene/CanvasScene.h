@@ -159,6 +159,8 @@ public:
 	 */
 	CREATE_FUNC(GameCanvasLayer);
 
+	
+
 private:
 	bool						_jointMode;			// status for joint draw mode, true joint draw mode is on, false otherwise
 

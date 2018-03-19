@@ -319,7 +319,7 @@ namespace DollarRecognizer
 
                             //cout << distance<< " " << bestDistance << " ";
                             //cout << " = " ;
-                            if (distance < bestDistance)
+							if (distance < bestDistance)
                             {
                                     bestDistance     = distance;
                                     indexOfBestMatch = i;
@@ -675,6 +675,7 @@ double GeometricRecognizer::Rad2Deg(double r)
 
 RecognitionResult GeometricRecognizer::Multirecognize(MultiStrokeGesture strokes,string method)
 {
+	
     bool useProtractor=false;
     if(method=="protractor"){
         cout<<"using protactor"<<endl;

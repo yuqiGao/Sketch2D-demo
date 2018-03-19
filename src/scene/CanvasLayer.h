@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include "DrawableSprite.h"
+using namespace DollarRecognizer;
 
 /**
  * Canvas Layer for draw shapes
@@ -10,7 +11,7 @@
 class CanvasLayer : public cocos2d::Layer
 {
 public:
-
+	
 	/**
 	 * Call when CanvasLayer enters the 'stage', override
 	 * @see cocos2d::Node::onEnter
@@ -37,20 +38,24 @@ public:
 	 * @see cocos2d::EventMouse
 	 */
 	virtual void onMouseUp(cocos2d::EventMouse* event);
-	
+
 	/**
 	 * Static factory to create CanvasLayer object
 	 */
 	CREATE_FUNC(CanvasLayer);
+	DrawableSprite* _currentDrawNode;
+	cocos2d::Vec2 _startDrawLocation;				// start draw location
+	int _srs;
+
 
 protected:
 
-	DrawableSprite* _currentDrawNode;				// current draw node
+					// current draw node
 	cocos2d::EventListenerMouse* _mouseListener;	// mouse event listener
 	cocos2d::Size _canvasSize;						// canvas size
 
 	bool _isDrawing;								// drawing status
-	cocos2d::Vec2 _startDrawLocation;				// start draw location
+	
 };
 
 /**
@@ -60,7 +65,6 @@ protected:
 class TrainingCanvasLayer :public CanvasLayer
 {
 public:
-
 	/**
 	 * Call when CanvasLayer enters the 'stage', override
 	 * @see cocos2d::Node::onEnter

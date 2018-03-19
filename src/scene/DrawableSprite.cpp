@@ -1,6 +1,6 @@
 #include "DrawableSprite.h"
 #include "util/VisibleRect.h"
-
+#include "geometry/recognizer/GeometricRecognizerNode.h"
 USING_NS_CC;
 
 using namespace DollarRecognizer;
@@ -106,11 +106,47 @@ MultiStrokeGesture& DrawableSprite::getMultiStrokeGesture(MultiStrokeGesture& mu
 
 RecognitionResult DrawableSprite::recognize()
 {
+	
 	if (!this->_path.empty())
 	{
+		log("Begin inner recognize");
 		MultiStrokeGesture multiStrokes;
 		getMultiStrokeGesture(multiStrokes);
-		RecognitionResult result = _geoRecognizer->Multirecognize(multiStrokes, "normal");
+		_geoRecognizer = new GeometricRecognizer();
+		//GeometricRecognizer* w = new GeometricRecognizer();
+		_geoRecognizer->loadTemplates();
+		vector<string> gesturesList;
+		gesturesList.push_back("Circle");
+		gesturesList.push_back("Caret");
+		gesturesList.push_back("CheckMark");
+		gesturesList.push_back("Arrow");
+		//gesturesList.push_back("Delete");
+		gesturesList.push_back("Diamond");
+		gesturesList.push_back("Pigtail");
+		gesturesList.push_back("QuestionMark");
+		gesturesList.push_back("Rectangle");
+		gesturesList.push_back("Spiral");
+		gesturesList.push_back("Triangle");
+		gesturesList.push_back("Star");
+		gesturesList.push_back("0");
+		_geoRecognizer->activateTemplates(gesturesList);
+		//_geoRecognizer->loadTemplates();
+		Path2D GLpath;
+		for (int s = 0; s < multiStrokes.size(); s++) {
+			Path2D tmp = multiStrokes.at(s);
+			for (int p = 0; p < tmp.size(); p++) {
+				Point2D pt = tmp.at(p);
+				/*log("asd");
+				char str[256];
+				sprintf(str, "%lf", pt.x);
+				string result = str;
+					log(str);*/
+				GLpath.push_back(pt);
+			}
+		}
+		
+		//RecognitionResult result = _geoRecognizer->Multirecognize(multiStrokes, "normal");
+		RecognitionResult result = _geoRecognizer->recognize(GLpath);
 		log("Recognized gesture: %s, Score: %f", result.name.c_str(), result.score);
 		return result;
 	}

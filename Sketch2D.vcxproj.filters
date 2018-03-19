@@ -21,6 +21,31 @@
     <ClCompile Include="..\Classes\HelloWorldScene.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GOScene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\util\FileWalker.cpp" />
+    <ClCompile Include="src\util\SampleFileIOHelper.cpp" />
+    <ClCompile Include="src\util\VisibleRect.cpp" />
+    <ClCompile Include="src\controller\CharacterController.cpp" />
+    <ClCompile Include="src\controller\PawnController.cpp" />
+    <ClCompile Include="src\geometry\delaunay\Clarkson-Delaunay.cpp" />
+    <ClCompile Include="src\geometry\handler\CommandHandler.cpp" />
+    <ClCompile Include="src\geometry\recognizer\GeometricRecognizerNode.cpp" />
+    <ClCompile Include="src\geometry\Bullet.cpp" />
+    <ClCompile Include="src\geometry\GeometricMath.cpp" />
+    <ClCompile Include="src\geometry\GeometricPhysics.cpp" />
+    <ClCompile Include="src\geometry\GeometricSprite.cpp" />
+    <ClCompile Include="src\geometry\Weapon.cpp" />
+    <ClCompile Include="src\gesture\GeometricRecognizer.cpp" />
+    <ClCompile Include="src\resource\ToolHintConstants.cpp" />
+    <ClCompile Include="src\scene\CanvasLayer.cpp" />
+    <ClCompile Include="src\scene\CanvasScene.cpp" />
+    <ClCompile Include="src\scene\DrawableSprite.cpp" />
+    <ClCompile Include="src\scene\ItemManageScene.cpp" />
+    <ClCompile Include="src\scene\MenuScene.cpp" />
+    <ClCompile Include="src\scene\SceneManager.cpp" />
+    <ClCompile Include="src\scene\TrainingScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -32,10 +57,50 @@
     <ClInclude Include="..\Classes\HelloWorldScene.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\GOScene.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="src\util\FileWalker.h" />
+    <ClInclude Include="src\util\SampleFileIOHelper.h" />
+    <ClInclude Include="src\util\VisibleRect.h" />
+    <ClInclude Include="src\controller\CharacterController.h" />
+    <ClInclude Include="src\controller\PawnController.h" />
+    <ClInclude Include="src\geometry\delaunay\Clarkson-Delaunay.h" />
+    <ClInclude Include="src\geometry\handler\CommandHandler.h" />
+    <ClInclude Include="src\geometry\recognizer\GeometricRecognizerNode.h" />
+    <ClInclude Include="src\geometry\recognizer\RecognizedSprite.h" />
+    <ClInclude Include="src\geometry\Bullet.h" />
+    <ClInclude Include="src\geometry\GeometricMath.h" />
+    <ClInclude Include="src\geometry\GeometricPhysics.h" />
+    <ClInclude Include="src\geometry\GeometricSprite.h" />
+    <ClInclude Include="src\geometry\GeomtryType.h" />
+    <ClInclude Include="src\geometry\Weapon.h" />
+    <ClInclude Include="src\gesture\GeometricRecognizer.h" />
+    <ClInclude Include="src\gesture\GeometricRecognizerTypes.h" />
+    <ClInclude Include="src\gesture\GestureTemplate.h" />
+    <ClInclude Include="src\gesture\MultipleStrokeGestureTemplate.h" />
+    <ClInclude Include="src\gesture\PathWriter.h" />
+    <ClInclude Include="src\gesture\SampleGestures.h" />
+    <ClInclude Include="src\gesture\SampleMultiStrokeGestures.h" />
+    <ClInclude Include="src\gesture\utils.h" />
+    <ClInclude Include="src\resource\Resources.h" />
+    <ClInclude Include="src\resource\ToolHintConstants.h" />
+    <ClInclude Include="src\scene\CanvasLayer.h" />
+    <ClInclude Include="src\scene\CanvasScene.h" />
+    <ClInclude Include="src\scene\DrawableSprite.h" />
+    <ClInclude Include="src\scene\ItemManageScene.h" />
+    <ClInclude Include="src\scene\MenuScene.h" />
+    <ClInclude Include="src\scene\SceneManager.h" />
+    <ClInclude Include="src\scene\TrainingScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="game.rc">
       <Filter>resource</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="game.aps" />
+    <None Include="build-cfg.json" />
   </ItemGroup>
 </Project>
